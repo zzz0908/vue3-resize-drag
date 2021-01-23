@@ -6,9 +6,9 @@ const vue3ResizeDragObj = {  //  定义一个对象
         // Vue.prototype.$xxx  // 最终可以在任何地方通过 this.$xxx 调用
         // 虽然没有明确规定用$开头  但是大家都默认遵守这个规定
         // 新增
-        if (typeof window !== 'undefined' && Vue) {
-            Vue.use(vue3ResizeDrag);
-        }
+        // if (typeof window !== 'undefined' && Vue) {
+        //     Vue.use(vue3ResizeDrag);
+        // }
     }
 }
 // 导出这个对象
