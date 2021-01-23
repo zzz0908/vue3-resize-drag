@@ -1,7 +1,12 @@
 {
   "name": "vue3-resize-drag",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "main": "dist/js/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zzz0908/vue3-resize-drag"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
