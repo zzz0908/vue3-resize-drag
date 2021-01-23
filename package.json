@@ -1,6 +1,6 @@
 {
   "name": "vue3-resize-drag",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "main": "dist/js/index.js",
   "repository": {
