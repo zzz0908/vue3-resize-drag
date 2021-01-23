@@ -21,11 +21,11 @@
 
 <script lang="ts">
 import { defineComponent ,reactive} from 'vue';
-import vue3ResizeDrag from '@/components/vue3-resize-drag.vue'
+// import vue3ResizeDrag from '@/components/vue3-resize-drag.vue'
 export default defineComponent({
   name: 'entry',
   components:{
-      vue3ResizeDrag
+    //   vue3ResizeDrag
   },
   setup() {
       const data = reactive([

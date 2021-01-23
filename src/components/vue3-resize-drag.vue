@@ -21,7 +21,7 @@
 import { computed, defineComponent, reactive, ref } from 'vue';
 import {styleIf} from '../types/style'
 export default defineComponent({
-  name: 'vue3-resize-drag',
+  name: 'vue3ResizeDrag',
   props:{
       x:{
           type:Number,
