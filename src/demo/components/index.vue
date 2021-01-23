@@ -9,7 +9,11 @@
     @mouseUpHandler="mouseUpHandler"
     @downHandler="downHandler"
     :isDraggable="item.drag"
-    :isResizable="true"
+    :isResizable="item.resize"
+    :isRotate="item.rotate"
+    @resizeHandler="resizeHandler"
+    @rotateHandler="rotateHandler"
+    :resizeIconSize="8"
     >
         {{item.name}}
     </vue3ResizeDrag>
@@ -29,37 +33,49 @@ export default defineComponent({
               x:100,
               y:100,
               name:'哈哈',
-              drag:false
+              drag:false,
+              resize:true,
+              rotate:true
           },
           {
               x:200,
               y:200,
               name:'哈哈2',
-              drag:true
+              drag:true,
+              resize:true,
+              rotate:true
           },
           {
               x:300,
               y:300,
               name:'哈哈3',
-              drag:true
+              drag:true,
+              resize:true,
+              rotate:true
           },
           {
               x:400,
               y:400,
               name:'哈哈4',
-              drag:true
+              drag:true,
+              resize:true,
+              rotate:true
           },
           {
               x:500,
               y:500,
               name:'哈哈5',
-              drag:true
+              drag:true,
+              resize:true,
+              rotate:true
           },
           {
               x:600,
               y:600,
               name:'哈哈6',
-              drag:true
+              drag:true,
+              resize:false,
+              rotate:false
           }
       ])
       const moveHandler = (data:object) => {
@@ -71,11 +87,19 @@ export default defineComponent({
       const mouseUpHandler = (data:object) => {
           console.log(data,'抬起')
       }
+      const resizeHandler = (data: object) => {
+          console.log(data,'缩放')
+      }
+      const rotateHandler = (data: object) => {
+          console.log(data,'旋转')
+      }
       return {
           data,
           moveHandler,
           downHandler,
-          mouseUpHandler
+          mouseUpHandler,
+          resizeHandler,
+          rotateHandler
       }
   }
 });

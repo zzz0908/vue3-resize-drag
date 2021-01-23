@@ -6,4 +6,5 @@ export interface styleIf {
     zIndex:number
     width:number | string
     height:number | string
+    rotate:number
 }
