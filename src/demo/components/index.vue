@@ -14,6 +14,8 @@
     @resizeHandler="resizeHandler"
     @rotateHandler="rotateHandler"
     :resizeIconSize="8"
+    :isGuide="true"
+    :guideStyle="{}"
     >
         {{item.name}}
     </vue3ResizeDrag>

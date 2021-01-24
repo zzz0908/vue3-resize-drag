@@ -34,6 +34,8 @@ declare module 'vue3-resize-drag'
     @resizeHandler="resizeHandler"  // 缩放回调函数
     @rotateHandler="rotateHandler"  // 旋转回调函数
     :resizeIconSize="8"  // 缩放按钮大小 默认为8px
+    :isGuide="true"   // 是否开启辅助线 默认为false
+    :guideStyle="{}"  // 辅助线样式
     >
         {{item.name}}
     </vue3ResizeDrag>

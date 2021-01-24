@@ -8059,6 +8059,24 @@ vue3-resize-drag@^0.1.7:
     vue "^3.0.0"
     vue3-resize-drag "^0.1.6"
 
+vue3-resize-drag@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/vue3-resize-drag/-/vue3-resize-drag-0.1.8.tgz#228f39311ff9106fca871f73e10b3194049e8aaf"
+  integrity sha512-atjsu6VPbB/89RQUvcqZcvh6igaondS2mU3K2++FTXjGzIgm8p5TFI4xuqoFFasnVRk208xuE9zx8LWY/eyNDg==
+  dependencies:
+    core-js "^3.6.5"
+    vue "^3.0.0"
+    vue3-resize-drag "^0.1.7"
+
+vue3-resize-drag@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/vue3-resize-drag/-/vue3-resize-drag-0.1.9.tgz#66968d2fa0b48eb3484b1ed7005ab9d26fa6a4c7"
+  integrity sha512-KmDwUHz33UCwoPJ+veOhxORUnl0ZQ49EIMIfyVi9ae2O4qg+SPpIkYhhFmy37UFp8TfYIvtq6eDKOEYKqLLygA==
+  dependencies:
+    core-js "^3.6.5"
+    vue "^3.0.0"
+    vue3-resize-drag "^0.1.8"
+
 vue@^3.0.0:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.0.5.tgz#de1b82eba24abfe71e0970fc9b8d4b2babdc3fe1"

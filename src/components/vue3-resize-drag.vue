@@ -6,11 +6,17 @@
     >
         <slot></slot>
         <img v-if="isRotate" class="rotate-icon" @mousedown.stop="itemRotate" src="~@/assets/rotate.svg" alt="">
+        <!-- 组件移动辅助线 -->
+        <div v-if="isGuide" v-for="i in [1,2,3,4]" :key="i" :style="guideStyle" :class="moveing ? `guide${i}` : ''">
+
+        </div>
+        <!-- 组件四周缩放按钮 -->
         <div
                 v-if="isResizable"
                 v-for="(el,index) in dragElResizeIcon"
                 :key="el.class"
                 class="dragElResizeIcon"
+                :class="el.class"
                 @mousedown.stop="itemResize($event,el.class,index)" 
                 :style="el.style">
         </div>
@@ -65,6 +71,18 @@ export default defineComponent({
               return true
           }
       },
+      isGuide:{
+          type:Boolean,
+          default:() => {
+              return false
+          }
+      },
+      guideStyle:{
+          type:Object,
+          default:() => {
+              return {}
+          }
+      },
       resizeIconSize:{
           type:Number,
           default:() => {
@@ -97,6 +115,7 @@ export default defineComponent({
         height:props.h,
         rotate:props.rotate
     })
+    const moveing = ref(false)
     // 计算属性  计算元素位置以及宽高
     const styleHandler = computed(()=>{
         return {
@@ -202,6 +221,7 @@ export default defineComponent({
         if(!props.isDraggable) return
         //鼠标按下并移动的事件
         document.onmousemove = (e)=>{
+            moveing.value = true
             //用鼠标的位置减去鼠标相对元素的位置，得到元素的位置
             let left = e.clientX - disX  
             let top = e.clientY - disY
@@ -219,6 +239,7 @@ export default defineComponent({
             })
         }
         document.onmouseup = (e) => {
+            moveing.value = false
             emit('mouseUpHandler',{  // 抬起事件回调
                 el:target,
                 e,
@@ -363,7 +384,8 @@ export default defineComponent({
         styleHandler,
         itemDown,
         itemResize,
-        itemRotate
+        itemRotate,
+        moveing
     }
   }
 });
@@ -377,6 +399,35 @@ export default defineComponent({
     transition: width height 1s;
     transform-origin:center center;
 }
+/* 辅助线 */
+.guide1{
+    position: absolute;
+    top: 0;
+    border-top: 1px solid #fcc;
+    width: 100vw;
+    left: -50vw;
+}
+.guide2{
+    position: absolute;
+    left: 0;
+    border-left: 1px solid #fcc;
+    height: 100vh;
+    top:-50vh;
+}
+.guide3{
+    position: absolute;
+    right: 0;
+    border-right: 1px solid #fcc;
+    height: 100vh;
+    top:-50vh;
+}
+.guide4{
+    position: absolute;
+    bottom: 0;
+    border-bottom: 1px solid #fcc;
+    width: 100vw;
+    left:-50vw;
+}
 /* 旋转图标 */
 .rotate-icon{
     width: 16px;
@@ -388,5 +439,29 @@ export default defineComponent({
 .dragElResizeIcon{
     position: absolute;
     background: #f00;
+}
+.drag-ct{
+    cursor: s-resize;
+}
+.drag-lt{
+    cursor: se-resize;
+}
+.drag-rt{
+    cursor: ne-resize;
+}
+.drag-rc{
+    cursor: w-resize;
+}
+.drag-rb{
+    cursor: se-resize;
+}
+.drag-bc{
+    cursor: s-resize;
+}
+.drag-lb{
+    cursor: ne-resize;
+}
+.drag-lc{
+    cursor: w-resize;
 }
 </style>
