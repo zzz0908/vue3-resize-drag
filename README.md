@@ -1,6 +1,19 @@
 # vue3-resize-drag
 # 文档
+### vue3.0拖拽缩放插件
+## 下载并引入
+```
+npm i vue3-resize-drag -S
+yarn add vue3-resize-drag -S
 
+import vue3ResizeDrag from 'vue3-resize-drag'
+const app = createApp(App)
+app.use(vue3ResizeDrag)
+
+注意:
+如果vue3.0中使用ts了,那么请在src/shims-vue.d.ts声明文件中加入此插件声明:
+declare module 'vue3-resize-drag'
+```
 ## 组件用法
 ```
 <vue3ResizeDrag 

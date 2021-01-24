@@ -5,6 +5,7 @@ module.exports = {
   outputDir:'dist',
   filenameHashing: false,
   productionSourceMap:false,
+  css:{extract:false},
   pages: {
     index: {
       // page 的入口
