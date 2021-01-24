@@ -1,6 +1,6 @@
 {
   "name": "vue3-resize-drag",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "private": false,
   "main": "dist/vue3-resize-drag.umd.min.js",
   "description": "vue3.0拖拽缩放组件 drag resize components",
