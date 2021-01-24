@@ -1,6 +1,6 @@
 {
   "name": "vue3-resize-drag",
-  "version": "0.2.1",
+  "version": "0.2.5",
   "private": false,
   "main": "dist/vue3-resize-drag.umd.min.js",
   "repository": {
@@ -14,8 +14,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "url-loader": "^4.1.1",
     "vue": "^3.0.0",
-    "vue3-resize-drag": "^0.1.9"
+    "vue3-resize-drag": "^0.2.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

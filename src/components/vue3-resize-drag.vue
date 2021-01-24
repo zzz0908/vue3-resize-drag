@@ -5,7 +5,7 @@
         @mousedown.stop="itemDown" 
     >
         <slot></slot>
-        <img v-if="isRotate" class="rotate-icon" @mousedown.stop="itemRotate" src="~@/assets/rotate.svg" alt="">
+        <div v-if="isRotate" class="rotate-icon" @mousedown.stop="itemRotate"></div>
         <!-- 组件移动辅助线 -->
         <div v-if="isGuide" v-for="i in [1,2,3,4]" :key="i" :style="guideStyle" :class="moveing ? `guide${i}` : ''">
 
@@ -431,9 +431,12 @@ export default defineComponent({
 /* 旋转图标 */
 .rotate-icon{
     width: 16px;
+    height: 16px;
     position: absolute;
     top: -20px;
-    left: calc(50% - 8px)
+    left: calc(50% - 8px);
+    background:url('~@/assets/rotate.png') no-repeat;
+    background-size: 100%;
 }
 /* 缩放角标 */
 .dragElResizeIcon{
