@@ -1,8 +1,9 @@
 {
   "name": "vue3-resize-drag",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "private": false,
   "main": "dist/vue3-resize-drag.umd.min.js",
+  "license" : "MIT",
   "description": "vue3.0拖拽缩放组件 drag resize components",
   "repository": {
     "type": "git",
@@ -14,17 +15,16 @@
     "lib": "vue-cli-service build --target lib --name vue3-resize-drag --dest dist src/vue3-resize-drag.ts"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "url-loader": "^4.1.1",
-    "vue": "^3.0.0",
-    "vue3-resize-drag": "^0.2.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
-    "typescript": "~3.9.3"
+    "typescript": "~3.9.3",
+    "url-loader": "^4.1.1",
+    "core-js": "^3.6.5",
+    "vue": "^3.0.0"
   },
   "browserslist": [
     "> 1%",
