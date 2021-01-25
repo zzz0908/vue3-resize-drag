@@ -7,7 +7,7 @@
         <slot></slot>
         <div v-if="isRotate" class="rotate-icon" @mousedown.stop="itemRotate"></div>
         <!-- 组件移动辅助线 -->
-        <div v-if="isGuide" v-for="i in [1,2,3,4]" :key="i" :style="guideStyle" :class="moveing ? `guide${i}` : ''">
+        <div v-if="isGuide" v-for="i in [1,2,3,4]" :key="i" :style="moveing ? {...guideBaseStyle[i - 1],...guideStyle} : {}" class="guide">
 
         </div>
         <!-- 组件四周缩放按钮 -->
@@ -25,14 +25,14 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, ref, watch } from 'vue';
-import {styleIf} from '../types/style'
-import renderFn from '@/components/func/renderData'
-import props from '@/components/func/props'
+import {styleIf} from '@/types/style'
+import renderFn from '@/components/vue3-resize-drag/func/renderData'
+import props from '@/components/vue3-resize-drag/func/props'
 
-import active from '@/components/func/active'
-import itemDrag from '@/components/func/drag'
-import itemRotateFn from '@/components/func/rotate'
-import itemResizeFn from '@/components/func/resize'
+import active from '@/components/vue3-resize-drag/func/active'
+import itemDrag from '@/components/vue3-resize-drag/func/drag'
+import itemRotateFn from '@/components/vue3-resize-drag/func/rotate'
+import itemResizeFn from '@/components/vue3-resize-drag/func/resize'
 export default defineComponent({
   name: 'vue3ResizeDrag',
   props,
@@ -42,7 +42,8 @@ export default defineComponent({
         style,  // 初始化组件位置级z-index
         moveing,  // 是否移动变量 用来判断辅助线是否显示
         styleHandler,  // 计算属性处理style变量
-        dragElResizeIcon  // 缩放图标初始位置 样式
+        dragElResizeIcon,  // 缩放图标初始位置 样式
+        guideBaseStyle  // 辅助线默认样式
     } = renderFn(props)  // 初始化data数据
     //   事件-----------------------------------------------------------------------------------------------
     const itemResize = (ev: any, cls: string, index: number) => {  // 缩放
@@ -57,6 +58,7 @@ export default defineComponent({
     active(props,emit)  // 监听激活
     return {
         style,
+        guideBaseStyle,
         dragElResizeIcon,
         styleHandler,
         itemDown,
@@ -77,33 +79,8 @@ export default defineComponent({
     transform-origin:center center;
 }
 /* 辅助线 */
-.guide1{
+.guide{
     position: absolute;
-    top: 0;
-    border-top: 1px solid #fcc;
-    width: 100vw;
-    left: -50vw;
-}
-.guide2{
-    position: absolute;
-    left: 0;
-    border-left: 1px solid #fcc;
-    height: 100vh;
-    top:-50vh;
-}
-.guide3{
-    position: absolute;
-    right: 0;
-    border-right: 1px solid #fcc;
-    height: 100vh;
-    top:-50vh;
-}
-.guide4{
-    position: absolute;
-    bottom: 0;
-    border-bottom: 1px solid #fcc;
-    width: 100vw;
-    left:-50vw;
 }
 /* 旋转图标 */
 .rotate-icon{
@@ -118,7 +95,8 @@ export default defineComponent({
 /* 缩放角标 */
 .dragElResizeIcon{
     position: absolute;
-    background: #f00;
+    background: #fff;
+    border:1px solid #ccc;
 }
 .drag-ct{
     cursor: s-resize;

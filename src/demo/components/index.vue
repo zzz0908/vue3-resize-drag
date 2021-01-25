@@ -5,7 +5,7 @@
     :x="item.x" 
     :y="item.y" 
     :zIndex="1"
-    @click="activeClick(item,index)"
+    @mousedown="activeMouseDown(item,index)"
     @moveHandler="moveHandler"
     @mouseUpHandler="mouseUpHandler"
     @downHandler="downHandler"
@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent ,reactive} from 'vue';
+import { defineComponent ,reactive,ref} from 'vue';
 // import vue3ResizeDrag from '@/components/vue3-resize-drag.vue'
 export default defineComponent({
   name: 'entry',
@@ -111,15 +111,18 @@ export default defineComponent({
       const deactivated = (data: object) => {
           console.log(data,'取消激活')
       }
+      let currentIndex = ref(-1)  // 临时存储当前激活组件的index
       //   自制激活事件 点击组件激活
-      const activeClick = (item:any,index: number) => {
+      const activeMouseDown = (item:any,index: number) => {
+          if(currentIndex.value === index) return
           data.forEach((item,i) => {
               if(i === index){
                 item['active'] = true
               }else{
-                  item['active'] = false
+                item['active'] = false
               }
           })
+          currentIndex.value = index
       }
       return {
           data,
@@ -130,7 +133,7 @@ export default defineComponent({
           rotateHandler,
           deactivated,
           activated,
-          activeClick
+          activeMouseDown
       }
   }
 });

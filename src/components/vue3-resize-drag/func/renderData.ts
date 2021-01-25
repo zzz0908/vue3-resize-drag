@@ -102,11 +102,40 @@ function render(props: any) {
                 }
             ]
     })
+    const guideBaseStyle = computed(() => {
+        return [
+            {
+                top: 0,
+                borderTop: '1px dashed #58B0E9',
+                width: '100vw',
+                left: `calc(-50vw + ${(<number>style.width) / 2}px)`
+            },
+            {
+                left: 0,
+                borderLeft: '1px dashed #58B0E9',
+                height: '100vh',
+                top:`calc(-50vh + ${(<number>style.height) / 2}px)`
+            },
+            {
+                right: 0,
+                borderRight: '1px dashed #58B0E9',
+                height: '100vh',
+                top:`calc(-50vh + ${(<number>style.height) / 2}px)`
+            },
+            {
+                bottom: 0,
+                borderBottom: '1px dashed #58B0E9',
+                width: '100vw',
+                left:`calc(-50vw + ${(<number>style.width) / 2}px)`
+            }
+        ]
+    })
   return {
     style,
     moveing,
     styleHandler,
-    dragElResizeIcon
+    dragElResizeIcon,
+    guideBaseStyle
   }
 }
 

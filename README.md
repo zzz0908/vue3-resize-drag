@@ -40,7 +40,7 @@ declare module 'vue3-resize-drag'
     :guideStyle="{}"  <!-- 辅助线样式 -->
     @activated="activated"  <!-- 激活回调函数 -->
     @deactivated="deactivated"  <!-- 取消激活回调函数 -->
-    @click="activeClick(item,index)"   <!-- 激活点击 -->
+    @mousedown="activeMouseDown(item,index)"   <!-- 激活点击 -->
     >
         {{item.name}}
     </vue3ResizeDrag>
@@ -52,9 +52,19 @@ declare module 'vue3-resize-drag'
               x:100,
               y:100,
               name:'哈哈',
-              drag:false,
+              drag:true,
               resize:true,
-              rotate:true
+              rotate:true,
+              active:true
+          },
+          {
+              x:200,
+              y:200,
+              name:'哈哈2',
+              drag:false,
+              resize:false,
+              rotate:false,
+              active:false
           }
     ])
     <!-- 事件回调 -->
@@ -79,15 +89,19 @@ declare module 'vue3-resize-drag'
       const deactivated = (data: object) => {
           console.log(data,'取消激活')
       }
+
+      let currentIndex = ref(-1)  // 临时存储当前激活组件的index
       //   自制激活事件 点击组件激活
-      const activeClick = (item:any,index: number) => {
+      const activeMouseDown = (item:any,index: number) => {
+          if(currentIndex.value === index) return
           data.forEach((item,i) => {
               if(i === index){
                 item['active'] = true
               }else{
-                  item['active'] = false
+                item['active'] = false
               }
           })
+          currentIndex.value = index
       }
 ```
 
