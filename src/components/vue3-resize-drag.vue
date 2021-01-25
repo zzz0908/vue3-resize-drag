@@ -12,7 +12,7 @@
         </div>
         <!-- 组件四周缩放按钮 -->
         <div
-                v-if="isResizable"
+                v-if="isResizable && isActive"
                 v-for="(el,index) in dragElResizeIcon"
                 :key="el.class"
                 class="dragElResizeIcon"
@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref } from 'vue';
+import { computed, defineComponent, reactive, ref, watch } from 'vue';
 import {styleIf} from '../types/style'
 export default defineComponent({
   name: 'vue3ResizeDrag',
@@ -57,6 +57,12 @@ export default defineComponent({
           type:Number,
           default:() => {
               return 100
+          }
+      },
+      isActive:{
+          type:Boolean,
+          default:() => {
+              return false
           }
       },
       isDraggable:{
@@ -225,7 +231,6 @@ export default defineComponent({
             //用鼠标的位置减去鼠标相对元素的位置，得到元素的位置
             let left = e.clientX - disX  
             let top = e.clientY - disY
-            console.log(left,top,'ssss')
             //绑定元素位置到positionX和positionY上面
             
             //移动当前元素
@@ -378,6 +383,21 @@ export default defineComponent({
             document.onmouseup = null
         }
     }
+    // 监听是否激活
+    watch(()=>{
+		return props.isActive
+    },
+    (n) => {
+        if(n){
+            emit('activated',{
+                
+            })
+        }else{
+            emit('deactivated',{
+                
+            })
+        }
+    })
     return {
         style,
         dragElResizeIcon,

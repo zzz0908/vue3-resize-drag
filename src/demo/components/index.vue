@@ -1,21 +1,25 @@
 <template>
     <vue3ResizeDrag 
-    v-for="item in data" 
+    v-for="(item,index) in data" 
     :key="item.name" 
     :x="item.x" 
     :y="item.y" 
     :zIndex="1"
+    @click="activeClick(item,index)"
     @moveHandler="moveHandler"
     @mouseUpHandler="mouseUpHandler"
     @downHandler="downHandler"
     :isDraggable="item.drag"
     :isResizable="item.resize"
     :isRotate="item.rotate"
+    :isActive="item.active"
     @resizeHandler="resizeHandler"
     @rotateHandler="rotateHandler"
     :resizeIconSize="8"
     :isGuide="true"
     :guideStyle="{}"
+    @activated="activated"
+    @deactivated="deactivated"
     >
         {{item.name}}
     </vue3ResizeDrag>
@@ -37,7 +41,7 @@ export default defineComponent({
               name:'哈哈',
               drag:false,
               resize:true,
-              rotate:true
+              rotate:true,
           },
           {
               x:200,
@@ -45,7 +49,8 @@ export default defineComponent({
               name:'哈哈2',
               drag:true,
               resize:true,
-              rotate:true
+              rotate:true,
+              active:true
           },
           {
               x:300,
@@ -95,13 +100,32 @@ export default defineComponent({
       const rotateHandler = (data: object) => {
           console.log(data,'旋转')
       }
+      const activated = (data: object) => {
+          console.log(data,'激活')
+      }
+      const deactivated = (data: object) => {
+          console.log(data,'取消激活')
+      }
+      //   自制激活事件 点击组件激活
+      const activeClick = (item:any,index: number) => {
+          data.forEach((item,i) => {
+              if(i === index){
+                item['active'] = true
+              }else{
+                  item['active'] = false
+              }
+          })
+      }
       return {
           data,
           moveHandler,
           downHandler,
           mouseUpHandler,
           resizeHandler,
-          rotateHandler
+          rotateHandler,
+          deactivated,
+          activated,
+          activeClick
       }
   }
 });
