@@ -1,6 +1,6 @@
 {
   "name": "vue3-resize-drag",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "private": false,
   "main": "dist/vue3-resize-drag.umd.min.js",
   "license" : "MIT",
