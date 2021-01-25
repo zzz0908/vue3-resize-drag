@@ -13,6 +13,7 @@ app.use(vue3ResizeDrag)
 注意:
 如果vue3.0中使用ts了,那么请在src/shims-vue.d.ts声明文件中加入此插件声明:
 declare module 'vue3-resize-drag'
+加入之后重启项目~~
 ```
 ## 组件用法
 ```
