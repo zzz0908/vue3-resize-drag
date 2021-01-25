@@ -42,6 +42,7 @@ export default defineComponent({
               drag:false,
               resize:true,
               rotate:true,
+              active:false
           },
           {
               x:200,
@@ -58,7 +59,8 @@ export default defineComponent({
               name:'哈哈3',
               drag:true,
               resize:true,
-              rotate:true
+              rotate:true,
+              active:false
           },
           {
               x:400,
@@ -66,7 +68,8 @@ export default defineComponent({
               name:'哈哈4',
               drag:true,
               resize:true,
-              rotate:true
+              rotate:true,
+              active:false
           },
           {
               x:500,
@@ -74,7 +77,8 @@ export default defineComponent({
               name:'哈哈5',
               drag:true,
               resize:true,
-              rotate:true
+              rotate:true,
+              active:false
           },
           {
               x:600,
@@ -82,7 +86,8 @@ export default defineComponent({
               name:'哈哈6',
               drag:true,
               resize:false,
-              rotate:false
+              rotate:false,
+              active:false
           }
       ])
       const moveHandler = (data:object) => {
