@@ -19,7 +19,7 @@ declare module 'vue3-resize-drag'
 ```
 <template>
     <vue3ResizeDrag 
-        v-for="item in data" 
+        v-for="item in data.data" 
         :key="item.name" 
         :x="item.x"   <!-- x 为组件left位置 -->
         :y="item.y"   <!-- y 为组件top位置 -->
