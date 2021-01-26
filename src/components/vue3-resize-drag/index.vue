@@ -28,6 +28,7 @@ import { computed, defineComponent, reactive, ref, watch } from 'vue';
 import {styleIf} from '@/types/style'
 import renderFn from '@/components/vue3-resize-drag/func/renderData'
 import props from '@/components/vue3-resize-drag/func/props'
+import watchProps from '@/components/vue3-resize-drag/func/watchProps'
 
 import active from '@/components/vue3-resize-drag/func/active'
 import itemDrag from '@/components/vue3-resize-drag/func/drag'
@@ -46,6 +47,7 @@ export default defineComponent({
         guideBaseStyle  // 辅助线默认样式
     } = renderFn(props)  // 初始化data数据
     //   事件-----------------------------------------------------------------------------------------------
+    watchProps(props,style)
     const itemResize = (ev: any, cls: string, index: number) => {  // 缩放
         itemResizeFn(ev, cls, index,emit,style)
     }

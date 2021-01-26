@@ -21,6 +21,7 @@
     @activated="activated"
     @deactivated="deactivated"
     >
+        {{item.x}}
         {{item.name}}
     </vue3ResizeDrag>
 </template>
@@ -117,6 +118,7 @@ export default defineComponent({
       //   自制激活事件 点击组件激活
       const activeMouseDown = (item:any,index: number) => {
           if(currentIndex.value === index) return
+          console.log(data)
           data.data.forEach((item,i) => {
               if(i === index){
                 item['active'] = true
@@ -126,7 +128,9 @@ export default defineComponent({
           })
           currentIndex.value = index
       }
-      let copyData = reactive({
+    //   保存复制的数据
+      let copyData = reactive<any>({
+          allData:[],
           copy:{}
       })
       document.onkeydown = function(e:any){  // 绑定键盘事件
@@ -135,15 +139,12 @@ export default defineComponent({
             data.data = data.data.filter((item,index) => index != currentIndex.value)
         } else if (e.ctrlKey && e.keyCode == 67) {  // Ctrl + C  // 复制
             if(currentIndex.value >= 0){
-                copyData.copy = Object.assign({},data.data[currentIndex.value])
+                copyData.allData = [...data.data]
+                copyData.copy = JSON.parse(JSON.stringify(copyData.allData[currentIndex.value]))
             }
         } else if (e.ctrlKey && e.keyCode == 86) {   // Ctrl + V  // 粘贴
-            let copy: object = Object.assign({},copyData.copy)
-            let copyReactive = reactive({
-                copy
-            })
-            console.log(copyReactive.copy)
-            // data.data.push(copyReactive.copy)
+            copyData.allData.push(copyData.copy)
+            data.data = copyData.allData
         } else if (e.ctrlKey && e.keyCode == 90) {  // Ctrl + Z  // 撤回
             //   暂时没写
         } else if (e.ctrlKey) {
@@ -153,7 +154,7 @@ export default defineComponent({
               if(currentIndex.value >= 0){
                 switch (e.keyCode) {
                     case 37:
-                        data.data[currentIndex.value].x -= 1
+                          data.data[currentIndex.value].x --
                         break;
                       case 38:
                           data.data[currentIndex.value].y --
