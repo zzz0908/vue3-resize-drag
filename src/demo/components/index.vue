@@ -22,7 +22,7 @@
     @deactivated="deactivated"
     >
         {{item.x}}
-        {{item.name}}
+        <span>{{item.name}}</span>
     </vue3ResizeDrag>
 </template>
 
