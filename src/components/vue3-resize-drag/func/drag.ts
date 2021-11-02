@@ -1,8 +1,23 @@
 import { ref, reactive } from 'vue'
 import {styleIf} from '@/types/style'
+
+// 替换 jQuery $().parents('')
+function getParents(el:any, parentSelector:string /* optional */) {
+    const parents = []
+    let p = el.parentNode
+    while (p !== document) {
+      const o = p
+      if ((' ' + p.className + ' ').indexOf(' ' + parentSelector + ' ') > -1) {
+        parents.push(o)
+      }
+      p = o.parentNode
+    }
+    return parents
+  }
+  
 // 外层元素点击拖拽
 const itemDrag = (ev: any, emit: Function, props: any,style: any,moveing: any): void => {
-  let target:any = ev.target || ev.srcElement
+  let target:any = getParents(ev.target, 'vue3-resize-drag')[0] || ev.target || ev.srcElement  // 修复包含子节点 拖动跑偏的问题
   ev.stopPropagation()
   ev.preventDefault()
   //算出鼠标相对元素的位置
